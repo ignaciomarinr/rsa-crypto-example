@@ -37,21 +37,18 @@ public class RSALibrary {
 	/* Throws IOException */
 	/***********************************************************************************/
 	public void generateKeys() throws IOException {
-
 		try {
-
 			final KeyPairGenerator keyGen = KeyPairGenerator.getInstance(ALGORITHM);
 			keyGen.initialize(1024);
 
-			// TO-DO: Use KeyGen to generate a public and a private key
+			// TODO: Use KeyGen to generate a public and a private key
 			// ...
 
-			// TO-DO: store the public key in the file PUBLIC_KEY_FILE
+			// TODO: store the public key in the file PUBLIC_KEY_FILE
 			// ...
 
-			// TO-DO: store the private key in the file PRIVATE_KEY_FILE
+			// TODO: store the private key in the file PRIVATE_KEY_FILE
 			// ...
-
 		} catch (NoSuchAlgorithmException e) {
 			System.out.println("Exception: " + e.getMessage());
 			System.exit(-1);
@@ -64,18 +61,15 @@ public class RSALibrary {
 	/* Returns a byte array with the ciphertext */
 	/***********************************************************************************/
 	public byte[] encrypt(byte[] plaintext, PublicKey key) {
-
 		byte[] ciphertext = null;
 
 		try {
-
 			// Gets an RSA cipher object
 			final Cipher cipher = Cipher.getInstance(ALGORITHM);
 
-			// TO-DO: initialize the cipher object and use it to encrypt the
+			// TODO: initialize the cipher object and use it to encrypt the
 			// plaintext
 			// ...
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -94,7 +88,7 @@ public class RSALibrary {
 			// Gets an RSA cipher object
 			final Cipher cipher = Cipher.getInstance(ALGORITHM);
 
-			// TO-DO: initialize the cipher object and use it to decrypt the
+			// TODO: initialize the cipher object and use it to decrypt the
 			// ciphertext
 			// ...
 
@@ -114,17 +108,16 @@ public class RSALibrary {
 		byte[] signedInfo = null;
 
 		try {
-
 			// Gets a Signature object
 			Signature signature = Signature.getInstance("SHA1withRSA");
 
-			// TO-DO: initialize the signature oject with the private key
+			// TODO: initialize the signature oject with the private key
 			// ...
 
-			// TO-DO: set plaintext as the bytes to be signed
+			// TODO: set plaintext as the bytes to be signed
 			// ...
 
-			// TO-DO: sign the plaintext and obtain the signature (signedInfo)
+			// TODO: sign the plaintext and obtain the signature (signedInfo)
 			// ...
 
 		} catch (Exception ex) {
@@ -146,17 +139,16 @@ public class RSALibrary {
 		boolean result = false;
 
 		try {
-
 			// Gets a Signature object
 			Signature signature = Signature.getInstance("SHA1withRSA");
 
-			// TO-DO: initialize the signature oject with the public key
+			// TODO: initialize the signature oject with the public key
 			// ...
 
-			// TO-DO: set plaintext as the bytes to be veryfied
+			// TODO: set plaintext as the bytes to be veryfied
 			// ...
 
-			// TO-DO: verify the signature (signed). Store the outcome in the
+			// TODO: verify the signature (signed). Store the outcome in the
 			// boolean result
 			// ...
 
