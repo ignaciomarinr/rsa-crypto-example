@@ -46,9 +46,17 @@ public class RSALibrary {
 			
 			// Store the public key in the file PUBLIC_KEY_FILE
 			PublicKey pk = kp.getPublic();
+			try (FileOutputStream fos = new FileOutputStream(PUBLIC_KEY_FILE);
+					ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+				oos.writeObject(pk);
+			}
 
 			// Store the private key in the file PRIVATE_KEY_FILE
 			PrivateKey sk = kp.getPrivate();
+			try (FileOutputStream fos = new FileOutputStream(PRIVATE_KEY_FILE);
+					ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+				oos.writeObject(sk);
+			}
 
 		} catch (NoSuchAlgorithmException e) {
 			System.out.println("Exception: " + e.getMessage());
@@ -75,6 +83,7 @@ public class RSALibrary {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return ciphertext;
 	}
 
