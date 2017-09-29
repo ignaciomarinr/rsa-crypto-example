@@ -41,12 +41,15 @@ public class RSALibrary {
 			final KeyPairGenerator keyGen = KeyPairGenerator.getInstance(ALGORITHM);
 			keyGen.initialize(1024);
 
-		      KeyPair kp = keyGen.generateKeyPair();
+			// Use KeyGen to generate a public and a private key
+			KeyPair kp = keyGen.generateKeyPair();
+			
+			// Store the public key in the file PUBLIC_KEY_FILE
+			PublicKey pk = kp.getPublic();
 
-			  PublicKey pk = kp.getPublic();
+			// Store the private key in the file PRIVATE_KEY_FILE
+			PrivateKey sk = kp.getPrivate();
 
-			  PrivateKey sk = kp.getPrivate();
-			  
 		} catch (NoSuchAlgorithmException e) {
 			System.out.println("Exception: " + e.getMessage());
 			System.exit(-1);
@@ -65,9 +68,10 @@ public class RSALibrary {
 			// Gets an RSA cipher object
 			final Cipher cipher = Cipher.getInstance(ALGORITHM);
 
+			// Initialize the cipher object and use it to encrypt the plaintext
 			cipher.init(Cipher.ENCRYPT_MODE, key);
-		     ciphertext = cipher.doFinal(plaintext);
-		      
+			ciphertext = cipher.doFinal(plaintext);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -86,9 +90,9 @@ public class RSALibrary {
 			// Gets an RSA cipher object
 			final Cipher cipher = Cipher.getInstance(ALGORITHM);
 
+			// Initialize the cipher object and use it to decrypt the ciphertext
 			cipher.init(Cipher.DECRYPT_MODE, key);
-		    plaintext = cipher.doFinal(ciphertext);
-
+			plaintext = cipher.doFinal(ciphertext);
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -109,11 +113,14 @@ public class RSALibrary {
 			// Gets a Signature object
 			Signature signature = Signature.getInstance("SHA1withRSA");
 
+			// Initialize the signature oject with the private key
 			signature.initSign(key);
 
+			// Set plaintext as the bytes to be signed
 			signature.update(plaintext);
 
-		    signedInfo = signature.sign();
+			// Sign the plaintext and obtain the signature (signedInfo)
+			signedInfo = signature.sign();
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -137,11 +144,13 @@ public class RSALibrary {
 			// Gets a Signature object
 			Signature signature = Signature.getInstance("SHA1withRSA");
 
-		    signature.initVerify(key);
+			// Initialize the signature oject with the public key
+			signature.initVerify(key);
 
-		    signature.update(plaintext);
+			// Set plaintext as the bytes to be veryfied
+			signature.update(plaintext);
 
-			// boolean result
+			// Verify the signature (signed). Store the outcome in the boolean result
 			result = signature.verify(signed);
 
 		} catch (Exception ex) {
